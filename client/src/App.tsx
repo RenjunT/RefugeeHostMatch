@@ -37,20 +37,20 @@ function Router() {
           <>
             {!user || typeof user !== 'object' || !('role' in user) || !user.role ? (
               <Route path="/" component={RoleSelection} />
-            ) : user.role === 'admin' ? (
+            ) : (user as any).role === 'admin' ? (
               <Route path="/" component={AdminDashboard} />
-            ) : user.role === 'refugee' ? (
-              user.profileStatus === 'pending' ? (
+            ) : (user as any).role === 'refugee' ? (
+              (user as any).profileStatus === 'pending' ? (
                 <Route path="/" component={RefugeeRegistration} />
-              ) : user.profileStatus === 'approved' ? (
+              ) : (user as any).profileStatus === 'approved' ? (
                 <Route path="/" component={Matches} />
               ) : (
                 <Route path="/" component={RefugeeRegistration} />
               )
-            ) : user.role === 'host' ? (
-              user.profileStatus === 'pending' ? (
+            ) : (user as any).role === 'host' ? (
+              (user as any).profileStatus === 'pending' ? (
                 <Route path="/" component={HostRegistration} />
-              ) : user.profileStatus === 'approved' ? (
+              ) : (user as any).profileStatus === 'approved' ? (
                 <Route path="/" component={Matches} />
               ) : (
                 <Route path="/" component={HostRegistration} />
