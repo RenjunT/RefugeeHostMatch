@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useAuth } from "@/hooks/useAuth";
 import Landing from "@/pages/landing";
+import RoleSelection from "@/pages/role-selection";
 import AdminDashboard from "@/pages/admin-dashboard";
 import RefugeeRegistration from "@/pages/refugee-registration";
 import HostRegistration from "@/pages/host-registration";
@@ -34,16 +35,28 @@ function Router() {
           <Route path="/" component={Landing} />
         ) : (
           <>
-            {user?.role === 'admin' ? (
+            {!user || typeof user !== 'object' || !('role' in user) || !user.role ? (
+              <Route path="/" component={RoleSelection} />
+            ) : user.role === 'admin' ? (
               <Route path="/" component={AdminDashboard} />
-            ) : user?.profileStatus === 'pending' ? (
-              user?.role === 'refugee' ? (
+            ) : user.role === 'refugee' ? (
+              user.profileStatus === 'pending' ? (
                 <Route path="/" component={RefugeeRegistration} />
+              ) : user.profileStatus === 'approved' ? (
+                <Route path="/" component={Matches} />
+              ) : (
+                <Route path="/" component={RefugeeRegistration} />
+              )
+            ) : user.role === 'host' ? (
+              user.profileStatus === 'pending' ? (
+                <Route path="/" component={HostRegistration} />
+              ) : user.profileStatus === 'approved' ? (
+                <Route path="/" component={Matches} />
               ) : (
                 <Route path="/" component={HostRegistration} />
               )
             ) : (
-              <Route path="/" component={Matches} />
+              <Route path="/" component={RoleSelection} />
             )}
             
             <Route path="/register/refugee" component={RefugeeRegistration} />
