@@ -91,7 +91,7 @@ export default function Landing() {
             </Button>
             <Button 
               size="lg"
-              className="bg-secondary-500 hover:bg-secondary-600"
+              className="bg-blue-600 hover:bg-blue-700 text-white"
               onClick={() => window.location.href = '/api/login'}
             >
               I Can Host (Volunteer)
