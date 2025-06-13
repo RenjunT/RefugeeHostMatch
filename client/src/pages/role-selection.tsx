@@ -60,7 +60,7 @@ export default function RoleSelection() {
   const roles = [
     {
       id: "refugee",
-      title: "I Need Housing",
+      title: "Register Now",
       subtitle: "Refugee seeking accommodation",
       description: "Find safe, verified host families who can provide temporary housing and support",
       icon: Users,
