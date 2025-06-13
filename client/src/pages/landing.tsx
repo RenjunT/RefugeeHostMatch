@@ -87,7 +87,7 @@ export default function Landing() {
               size="lg"
               onClick={() => window.location.href = '/api/login'}
             >
-              Register Now
+              I Need Housing (Refugee)
             </Button>
             <Button 
               size="lg"
