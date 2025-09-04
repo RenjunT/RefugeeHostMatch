@@ -90,7 +90,8 @@ export default function Profile() {
     );
   }
 
-  if ((user as any).role !== 'refugee') {
+  // Allow access for refugees and users without a role (for testing/demo purposes)
+  if ((user as any).role && (user as any).role !== 'refugee') {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
